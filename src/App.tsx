@@ -10,7 +10,7 @@ import {
     signOut,
     type User
 } from "firebase/auth"
-import {doc, Firestore, getDoc, getFirestore, setDoc, setLogLevel} from "firebase/firestore"
+import {doc, getDoc, getFirestore, setDoc, setLogLevel} from "firebase/firestore"
 
 const firebaseConfig = {
     apiKey: "AIzaSyDM9-NOmxOE-E5xLG0jaglmlG98Z1zRhRM",
@@ -26,7 +26,8 @@ export default function App() {
     const [user, setUser] = useState<User | null>(null)
     const [loading, setLoading] = useState<boolean>(true)
     const [auth, setAuth] = useState<Auth | null>(null)
-    const [db, setDb] = useState<Firestore | null>(null)
+
+    // const [db, setDb] = useState<Firestore | null>(null)
 
     async function handleSignIn() {
         setLoading(true)
@@ -63,7 +64,7 @@ export default function App() {
             const authInstance = getAuth(app)
             const dbInstance = getFirestore(app)
             setAuth(authInstance)
-            setDb(dbInstance)
+            // setDb(dbInstance)
 
             const unsubscribe = onAuthStateChanged(authInstance, async (currentUser) => {
                 if (currentUser) {
