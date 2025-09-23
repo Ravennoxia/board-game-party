@@ -1,9 +1,13 @@
 .nav-div {
     position: sticky;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     top: 0;
     align-items: center;
     padding: 1rem;
-    gap: 5px;
+}
+
+.button-spacing {
+    display: flex;
+    gap: 1rem;
 }

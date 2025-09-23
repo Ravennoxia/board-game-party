@@ -10,6 +10,7 @@ import type {BGUser} from "./features/types.ts"
 import ProfilePage from "./features/user/ProfilePage.tsx"
 import Navbar from "./features/Navbar.tsx"
 import Homepage from "./features/Homepage.tsx"
+import SignIn from "./features/user/SignIn.tsx"
 
 export default function App() {
     const [bgUser, setBgUser] = useState<BGUser | null>(null)
@@ -60,13 +61,22 @@ export default function App() {
 
     return (
         <BrowserRouter basename={BASE_NAME}>
-            <div className={"app-div"}>
-                <Navbar bgUser={bgUser} auth={auth}/>
-                <Routes>
-                    <Route path={ROUTES.home} element={<Homepage/>}/>
-                    <Route path={ROUTES.profile} element={<ProfilePage bgUser={bgUser} db={db}/>}/>
-                </Routes>
-            </div>
+            {bgUser ? (
+                <div className={"app-div"}>
+                    <Navbar bgUser={bgUser} auth={auth}/>
+                    <Routes>
+                        <Route path={ROUTES.home} element={<Homepage/>}/>
+                        <Route path={ROUTES.profile} element={<ProfilePage bgUser={bgUser} db={db}/>}/>
+                    </Routes>
+                </div>
+            ) : (
+                <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+                    <h1>Welcome to Board Game Party Planner</h1>
+                    <SignIn auth={auth}/>
+                </div>
+
+            )}
+
         </BrowserRouter>
     )
 }

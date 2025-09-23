@@ -1,4 +1,3 @@
-import SignIn from "./user/SignIn.tsx"
 import type {BGUser} from "./types.ts"
 import SignOut from "./user/SignOut.tsx"
 import type {Auth} from "firebase/auth"
@@ -8,18 +7,22 @@ import "./Navbar.css"
 
 export default function Navbar({bgUser, auth}: { bgUser: BGUser | null, auth: Auth | null }) {
     return (
-        <div className={"nav-div"}>
-            {bgUser ? (
-                <>
-                    <Link to={ROUTES.profile}>
-                        <button>Profile</button>
-                    </Link>
-                    <SignOut auth={auth}/>
-                </>
-            ) : (
-                <SignIn auth={auth}/>
+        <>
+            {bgUser && (
+                <div className={"nav-div"}>
+                    <div>
+                        <Link to={ROUTES.home}>
+                            <button>Home</button>
+                        </Link>
+                    </div>
+                    <div className={"button-spacing"}>
+                        <Link to={ROUTES.profile}>
+                            <button>Profile</button>
+                        </Link>
+                        <SignOut auth={auth}/>
+                    </div>
+                </div>
             )}
-
-        </div>
+        </>
     )
 }
