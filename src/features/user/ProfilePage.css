@@ -1,0 +1,30 @@
+.profile-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: auto auto 75px;
+    align-items: center;
+    gap: 5px 1rem;
+}
+
+.profile-image {
+    height: 2rem;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+.profile-name-image {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+
+.field-name {
+    font-weight: bold;
+    text-align: end;
+}

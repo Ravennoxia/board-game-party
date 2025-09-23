@@ -1,115 +1,72 @@
 import {initializeApp} from "firebase/app"
 import "./App.css"
+import "./index.css"
 import {useEffect, useState} from "react"
-import {
-    type Auth,
-    getAuth,
-    GoogleAuthProvider,
-    onAuthStateChanged,
-    signInWithPopup,
-    signOut,
-    type User
-} from "firebase/auth"
-import {doc, getDoc, getFirestore, setDoc, setLogLevel} from "firebase/firestore"
-
-const firebaseConfig = {
-    apiKey: "AIzaSyDM9-NOmxOE-E5xLG0jaglmlG98Z1zRhRM",
-    authDomain: "raven-board-game-party.firebaseapp.com",
-    projectId: "raven-board-game-party",
-    storageBucket: "raven-board-game-party.firebasestorage.app",
-    messagingSenderId: "400848628410",
-    appId: "1:400848628410:web:9357bba7f8c4dcc5bcb083",
-    measurementId: "G-VXZ52R32MK"
-}
+import {type Auth, getAuth, onAuthStateChanged} from "firebase/auth"
+import {doc, Firestore, getDoc, getFirestore, setDoc} from "firebase/firestore"
+import {BrowserRouter, Route, Routes} from "react-router-dom"
+import {BASE_NAME, FIREBASE_CONFIG, ROUTES} from "./features/constants.ts"
+import type {BGUser} from "./features/types.ts"
+import ProfilePage from "./features/user/ProfilePage.tsx"
+import Navbar from "./features/Navbar.tsx"
+import Homepage from "./features/Homepage.tsx"
 
 export default function App() {
-    const [user, setUser] = useState<User | null>(null)
-    const [loading, setLoading] = useState<boolean>(true)
+    const [bgUser, setBgUser] = useState<BGUser | null>(null)
     const [auth, setAuth] = useState<Auth | null>(null)
-
-    // const [db, setDb] = useState<Firestore | null>(null)
-
-    async function handleSignIn() {
-        setLoading(true)
-        if (!auth) {
-            setLoading(false)
-            return
-        }
-        try {
-            const provider = new GoogleAuthProvider()
-            provider.setCustomParameters({
-                prompt: "select_account"
-            })
-            await signInWithPopup(auth, provider)
-        } catch (e) {
-            console.error("Sign-in error:", e)
-            setLoading(false)
-        }
-    }
-
-    async function handleSignOut() {
-        try {
-            if (auth) {
-                await signOut(auth)
-            }
-        } catch (e) {
-            console.error("Sign-out error:", e)
-        }
-    }
+    const [db, setDb] = useState<Firestore | null>(null)
 
     useEffect(() => {
         try {
-            setLogLevel("debug")
-            const app = initializeApp(firebaseConfig)
+            const app = initializeApp(FIREBASE_CONFIG)
             const authInstance = getAuth(app)
             const dbInstance = getFirestore(app)
             setAuth(authInstance)
-            // setDb(dbInstance)
+            setDb(dbInstance)
 
             const unsubscribe = onAuthStateChanged(authInstance, async (currentUser) => {
                 if (currentUser) {
-                    setUser(currentUser)
                     try {
                         const userDocRef = doc(dbInstance, "users", currentUser.uid)
                         const userDocSnap = await getDoc(userDocRef)
-                        if (!userDocSnap.exists()) {
-                            await setDoc(userDocRef, {
+                        if (userDocSnap.exists()) {
+                            const userData = userDocSnap.data() as BGUser
+                            setBgUser(userData)
+                        } else {
+                            const newUserData = {
                                 uid: currentUser.uid,
                                 email: currentUser.email,
                                 displayName: currentUser.displayName,
                                 photoURL: currentUser.photoURL,
                                 createdAt: new Date()
-                            }, {merge: true})
+                            }
+                            await setDoc(userDocRef, newUserData, {merge: true})
+                            setBgUser(newUserData)
                         }
                     } catch (e) {
                         console.error("Error setting user profile in Firestore:", e)
                     }
                 } else {
-                    setUser(null)
+                    setBgUser(null)
                 }
-                setLoading(false)
             })
 
             return () => unsubscribe()
         } catch (e) {
             console.error("Firebase initialization failed:", e)
-            setLoading(false)
         }
     }, [])
 
+
     return (
-        <>
-            {loading && !user && (
-                <p>Loading...</p>
-            )}
-            {user ? (
-                <>
-                    <p>Welcome {user.displayName}</p>
-                    <button onClick={handleSignOut}>Sign Out</button>
-                </>
-            ) : (
-                <button onClick={handleSignIn}>Sign In</button>
-            )}
-        </>
+        <BrowserRouter basename={BASE_NAME}>
+            <div className={"app-div"}>
+                <Navbar bgUser={bgUser} auth={auth}/>
+                <Routes>
+                    <Route path={ROUTES.home} element={<Homepage/>}/>
+                    <Route path={ROUTES.profile} element={<ProfilePage bgUser={bgUser} db={db}/>}/>
+                </Routes>
+            </div>
+        </BrowserRouter>
     )
 }
