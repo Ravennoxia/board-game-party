@@ -1,0 +1,9 @@
+.nav-div {
+    position: sticky;
+    display: flex;
+    justify-content: flex-end;
+    top: 0;
+    align-items: center;
+    padding: 1rem;
+    gap: 5px;
+}
