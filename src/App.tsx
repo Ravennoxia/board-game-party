@@ -5,7 +5,7 @@ import {useEffect, useState} from "react"
 import {type Auth, getAuth, onAuthStateChanged} from "firebase/auth"
 import {doc, Firestore, getDoc, getFirestore, setDoc} from "firebase/firestore"
 import {HashRouter, Route, Routes} from "react-router-dom"
-import {BASE_NAME, FIREBASE_CONFIG, ROUTES} from "./features/constants.ts"
+import {FIREBASE_CONFIG, ROUTES} from "./features/constants.ts"
 import type {BGUser} from "./features/types.ts"
 import ProfilePage from "./features/user/ProfilePage.tsx"
 import Navbar from "./features/Navbar.tsx"
@@ -62,7 +62,7 @@ export default function App() {
 
 
     return (
-        <HashRouter basename={BASE_NAME}>
+        <HashRouter basename={import.meta.env.BASE_URL}>
             {loading && !bgUser ? (
                 <div className={"loader-container"}>
                     <h1>Loading...</h1>

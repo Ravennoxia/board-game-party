@@ -13,5 +13,3 @@ export const FIREBASE_CONFIG = {
     appId: "1:400848628410:web:9357bba7f8c4dcc5bcb083",
     measurementId: "G-VXZ52R32MK"
 }
-
-export const BASE_NAME = import.meta.env.PROD ? "/board-game-party" : "/"
