@@ -1,86 +1,86 @@
 .gsi-material-button {
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    -webkit-appearance: none;
-    background-color: #131314;
-    background-image: none;
-    /*noinspection CssOverwrittenProperties,CssReplaceWithShorthandSafely*/
-    border: 1px solid #747775;
-    -webkit-border-radius: 20px;
-    border-radius: 20px;
+    font-family: 'Roboto', arial, sans-serif;
+    font-size: 14px;
+    position: relative;
+    overflow: hidden;
     /*noinspection CssUnknownProperty*/
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
-    color: #e3e3e3;
-    cursor: pointer;
-    font-family: 'Roboto', arial, sans-serif;
-    font-size: 14px;
+    width: auto;
+    min-width: min-content;
+    max-width: 400px;
     height: 40px;
-    /*noinspection CssNonIntegerLengthInPixels*/
-    letter-spacing: 0.25px;
-    outline: none;
-    overflow: hidden;
     padding: 0 12px;
-    position: relative;
-    text-align: center;
+    cursor: pointer;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
     -webkit-transition: background-color .218s, border-color .218s, box-shadow .218s;
     transition: background-color .218s, border-color .218s, box-shadow .218s;
+    text-align: center;
     vertical-align: middle;
     white-space: nowrap;
-    width: auto;
-    max-width: 400px;
-    min-width: min-content;
+    /*noinspection CssNonIntegerLengthInPixels*/
+    letter-spacing: 0.25px;
+    color: #e3e3e3;
+    /*noinspection CssOverwrittenProperties,CssReplaceWithShorthandSafely*/
+    border: 1px solid #747775;
     /*noinspection CssOverwrittenProperties,CssReplaceWithShorthandSafely*/
     border-color: #8e918f;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+    outline: none;
+    background-color: #131314;
+    background-image: none;
+    -webkit-appearance: none;
 }
 
 .gsi-material-button .gsi-material-button-icon {
+    width: 20px;
+    min-width: 20px;
     height: 20px;
     margin-right: 12px;
-    min-width: 20px;
-    width: 20px;
 }
 
 .gsi-material-button .gsi-material-button-content-wrapper {
+    position: relative;
+    display: flex;
     -webkit-align-items: center;
     align-items: center;
-    display: flex;
     -webkit-flex-direction: row;
     flex-direction: row;
     -webkit-flex-wrap: nowrap;
     flex-wrap: nowrap;
-    height: 100%;
     justify-content: space-between;
-    position: relative;
     width: 100%;
+    height: 100%;
 }
 
 .gsi-material-button .gsi-material-button-contents {
-    -webkit-flex-grow: 1;
-    flex-grow: 1;
     font-family: 'Roboto', arial, sans-serif;
     font-weight: 500;
     overflow: hidden;
-    text-overflow: ellipsis;
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
     vertical-align: top;
+    text-overflow: ellipsis;
 }
 
 .gsi-material-button .gsi-material-button-state {
-    -webkit-transition: opacity .218s;
-    transition: opacity .218s;
+    position: absolute;
+    top: 0;
+    right: 0;
     bottom: 0;
     left: 0;
+    -webkit-transition: opacity .218s;
+    transition: opacity .218s;
     opacity: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
 }
 
 .gsi-material-button:disabled {
     cursor: default;
-    background-color: #13131461;
     border-color: #8e918f1f;
+    background-color: #13131461;
 }
 
 .gsi-material-button:disabled .gsi-material-button-state {
@@ -97,8 +97,8 @@
 
 .gsi-material-button:not(:disabled):active .gsi-material-button-state,
 .gsi-material-button:not(:disabled):focus .gsi-material-button-state {
-    background-color: white;
     opacity: 12%;
+    background-color: white;
 }
 
 .gsi-material-button:not(:disabled):hover {
@@ -107,6 +107,6 @@
 }
 
 .gsi-material-button:not(:disabled):hover .gsi-material-button-state {
-    background-color: white;
     opacity: 8%;
+    background-color: white;
 }
