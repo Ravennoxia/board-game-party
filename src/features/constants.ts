@@ -14,4 +14,4 @@ export const FIREBASE_CONFIG = {
     measurementId: "G-VXZ52R32MK"
 }
 
-export const BASE_NAME = import.meta.env.PROD ? "/board-game-party/" : "/"
+export const BASE_NAME = import.meta.env.PROD ? "/board-game-party" : "/"
