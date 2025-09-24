@@ -62,7 +62,7 @@ export default function App() {
 
 
     return (
-        <HashRouter basename={import.meta.env.BASE_URL}>
+        <HashRouter>
             {loading && !bgUser ? (
                 <div className={"loader-container"}>
                     <h1>Loading...</h1>
