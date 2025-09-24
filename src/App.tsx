@@ -4,7 +4,7 @@ import "./index.css"
 import {useEffect, useState} from "react"
 import {type Auth, getAuth, onAuthStateChanged} from "firebase/auth"
 import {doc, Firestore, getDoc, getFirestore, setDoc} from "firebase/firestore"
-import {BrowserRouter, Route, Routes} from "react-router-dom"
+import {HashRouter, Route, Routes} from "react-router-dom"
 import {BASE_NAME, FIREBASE_CONFIG, ROUTES} from "./features/constants.ts"
 import type {BGUser} from "./features/types.ts"
 import ProfilePage from "./features/user/ProfilePage.tsx"
@@ -62,7 +62,7 @@ export default function App() {
 
 
     return (
-        <BrowserRouter basename={BASE_NAME}>
+        <HashRouter basename={BASE_NAME}>
             {loading && !bgUser ? (
                 <div className={"loader-container"}>
                     <h1>Loading...</h1>
@@ -87,6 +87,6 @@ export default function App() {
                     )}
                 </>
             )}
-        </BrowserRouter>
+        </HashRouter>
     )
 }

@@ -6,7 +6,7 @@
   "homepage": "https://ravennoxia.github.io/board-game-party",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && copy 404.html dist",
+    "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
