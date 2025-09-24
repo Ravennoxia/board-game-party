@@ -75,7 +75,9 @@ export default function App() {
                             <Navbar bgUser={bgUser} auth={auth}/>
                             <Routes>
                                 <Route path={ROUTES.home} element={<Homepage/>}/>
-                                <Route path={ROUTES.profile} element={<ProfilePage bgUser={bgUser} db={db}/>}/>
+                                <Route path={ROUTES.profile}
+                                       element={<ProfilePage bgUser={bgUser} setBgUser={setBgUser} db={db}/>}
+                                />
                             </Routes>
                         </div>
                     ) : (
