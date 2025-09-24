@@ -16,6 +16,7 @@ export default function App() {
     const [bgUser, setBgUser] = useState<BGUser | null>(null)
     const [auth, setAuth] = useState<Auth | null>(null)
     const [db, setDb] = useState<Firestore | null>(null)
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         try {
@@ -50,6 +51,7 @@ export default function App() {
                 } else {
                     setBgUser(null)
                 }
+                setLoading(false)
             })
 
             return () => unsubscribe()
@@ -61,22 +63,30 @@ export default function App() {
 
     return (
         <BrowserRouter basename={BASE_NAME}>
-            {bgUser ? (
-                <div className={"app-div"}>
-                    <Navbar bgUser={bgUser} auth={auth}/>
-                    <Routes>
-                        <Route path={ROUTES.home} element={<Homepage/>}/>
-                        <Route path={ROUTES.profile} element={<ProfilePage bgUser={bgUser} db={db}/>}/>
-                    </Routes>
+            {loading && !bgUser ? (
+                <div className={"loader-container"}>
+                    <h1>Loading...</h1>
+                    <div className={"loader"}></div>
                 </div>
             ) : (
-                <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
-                    <h1>Welcome to Board Game Party Planner</h1>
-                    <SignIn auth={auth}/>
-                </div>
+                <>
+                    {bgUser ? (
+                        <div className={"app-div"}>
+                            <Navbar bgUser={bgUser} auth={auth}/>
+                            <Routes>
+                                <Route path={ROUTES.home} element={<Homepage/>}/>
+                                <Route path={ROUTES.profile} element={<ProfilePage bgUser={bgUser} db={db}/>}/>
+                            </Routes>
+                        </div>
+                    ) : (
+                        <div className={"sign-in-container"}>
+                            <h1>Welcome to Board Game Party Planner</h1>
+                            <SignIn auth={auth}/>
+                        </div>
 
+                    )}
+                </>
             )}
-
         </BrowserRouter>
     )
 }
