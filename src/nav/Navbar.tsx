@@ -1,8 +1,8 @@
-import type {BGUser} from "./types.ts"
-import SignOut from "./user/SignOut.tsx"
+import type {BGUser} from "../types.ts"
+import SignOut from "../pages/profile-page/components/SignOut.tsx"
 import type {Auth} from "firebase/auth"
 import {Link} from "react-router-dom"
-import {ROUTES} from "./constants.ts"
+import {ROUTES} from "../constants.ts"
 import "./Navbar.css"
 
 export default function Navbar({bgUser, auth}: { bgUser: BGUser | null, auth: Auth | null }) {

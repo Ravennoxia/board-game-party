@@ -3,6 +3,11 @@ export const ROUTES = {
     profile: "/profile"
 }
 
+export const DB_TABLES = {
+    users: "users",
+    boardGames: "boardGames"
+}
+
 // noinspection SpellCheckingInspection
 export const FIREBASE_CONFIG = {
     apiKey: "AIzaSyDM9-NOmxOE-E5xLG0jaglmlG98Z1zRhRM",

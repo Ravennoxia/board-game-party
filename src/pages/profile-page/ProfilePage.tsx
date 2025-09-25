@@ -1,9 +1,11 @@
-import type {BGUser} from "../types.ts"
+import type {BGUser, BoardGame} from "../../types.ts"
 import "./ProfilePage.css"
 import {type Dispatch, type SetStateAction, useState} from "react"
 import {doc, type Firestore, updateDoc} from "firebase/firestore"
 import {CheckIcon, Cross1Icon, Pencil1Icon} from "@radix-ui/react-icons"
 import {useForm} from "react-hook-form"
+import ImportGames from "./components/ImportGames.tsx"
+import {DB_TABLES} from "../../constants.ts"
 
 type UsernameFormValues = {
     username: string
@@ -13,10 +15,11 @@ type BGGUsernameFormValues = {
     bggUsername: string
 }
 
-export default function ProfilePage({bgUser, setBgUser, db}: {
+export default function ProfilePage({bgUser, setBgUser, db, setGames}: {
     bgUser: BGUser | null,
     setBgUser: Dispatch<SetStateAction<BGUser | null>>,
-    db: Firestore | null
+    db: Firestore | null,
+    setGames: Dispatch<SetStateAction<BoardGame[]>>
 }) {
     const [editingUsername, setEditingUsername] = useState<boolean>(false)
     const [editingBGGUsername, setEditingBGGUsername] = useState<boolean>(false)
@@ -45,7 +48,7 @@ export default function ProfilePage({bgUser, setBgUser, db}: {
     async function saveUsername(data: UsernameFormValues) {
         try {
             if (db && bgUser && bgUser.username !== data.username) {
-                const userDocRef = doc(db, "users", bgUser.uid)
+                const userDocRef = doc(db, DB_TABLES.users, bgUser.uid)
                 await updateDoc(userDocRef, {username: data.username})
                 setBgUser({...bgUser, username: data.username})
             }
@@ -59,7 +62,7 @@ export default function ProfilePage({bgUser, setBgUser, db}: {
     async function saveBGGUsername(data: BGGUsernameFormValues) {
         try {
             if (db && bgUser && bgUser.bggUsername !== data.bggUsername) {
-                const userDocRef = doc(db, "users", bgUser.uid)
+                const userDocRef = doc(db, DB_TABLES.users, bgUser.uid)
                 await updateDoc(userDocRef, {bggUsername: data.bggUsername})
                 setBgUser({...bgUser, bggUsername: data.bggUsername})
             }
@@ -71,9 +74,9 @@ export default function ProfilePage({bgUser, setBgUser, db}: {
     }
 
     return (
-        <div className={"profile-page"}>
-            {bgUser ? (
-                <>
+        <>
+            {bgUser && (
+                <div className={"profile-page"}>
                     <h2 className={"profile-name-image"}>
                         {bgUser.photoURL && (
                             <img className={"profile-image"}
@@ -171,10 +174,9 @@ export default function ProfilePage({bgUser, setBgUser, db}: {
                             )}
                         </form>
                     </div>
-                </>
-            ) : (
-                <></>
+                    <ImportGames uid={bgUser.uid} bggUsername={bgUser.bggUsername} setGames={setGames} db={db}/>
+                </div>
             )}
-        </div>
+        </>
     )
 }
