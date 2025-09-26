@@ -1,13 +1,13 @@
 export interface BGUser {
-    uid: string
-    email: string | null
-    displayName: string | null
-    photoURL?: string | null
-    createdAt?: Date
-    username?: string
-    bggUsername?: string
-    gameIds?: number[]
-    friends?: string[]
+    readonly uid: string
+    readonly email: string | null
+    readonly displayName: string | null
+    readonly photoURL: string | null
+    readonly createdAt: Date
+    username: string
+    bggUsername: string
+    gameIds: number[]
+    friends: string[]
 }
 
 export interface BoardGame {

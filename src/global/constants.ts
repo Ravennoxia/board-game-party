@@ -8,7 +8,6 @@ export const DB_TABLES = {
     boardGames: "boardGames"
 }
 
-// noinspection SpellCheckingInspection
 export const FIREBASE_CONFIG = {
     apiKey: "AIzaSyDM9-NOmxOE-E5xLG0jaglmlG98Z1zRhRM",
     authDomain: "raven-board-game-party.firebaseapp.com",

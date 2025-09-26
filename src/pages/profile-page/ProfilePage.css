@@ -1,4 +1,4 @@
-.profile-page {
+.profile-container {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -26,6 +26,16 @@
     gap: 1rem;
 }
 
+.profile-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border-radius: 50%;
+}
+
 .field-name {
     font-weight: bold;
     text-align: end;
@@ -48,16 +58,6 @@
 .field-buttons {
     display: flex;
     gap: 5px;
-}
-
-.profile-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-    padding: 0;
-    border-radius: 50%;
 }
 
 @media screen and (max-width: 450px) {
