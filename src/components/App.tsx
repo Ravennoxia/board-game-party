@@ -3,10 +3,10 @@ import "../index.css"
 import {HashRouter, Route, Routes} from "react-router-dom"
 import {ROUTES} from "../global/constants.ts"
 import ProfilePage from "../pages/profile-page/ProfilePage.tsx"
-import Navbar from "../nav/Navbar.tsx"
+import Navbar from "./Navbar.tsx"
 import Homepage from "../pages/Homepage.tsx"
 import SignIn from "../pages/profile-page/components/SignIn.tsx"
-import {useApp} from "./AppContext.ts"
+import {useApp} from "../global/AppContext.ts"
 
 export default function App() {
     const {user} = useApp()

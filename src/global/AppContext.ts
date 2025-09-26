@@ -1,6 +1,6 @@
 import type {Auth} from "firebase/auth"
 import type {Firestore} from "firebase/firestore"
-import type {BGUser, BoardGame} from "../global/types.ts"
+import type {BGUser, BoardGame} from "./types.ts"
 import {createContext, type Dispatch, type SetStateAction, useContext} from "react"
 
 export interface AppContextType {

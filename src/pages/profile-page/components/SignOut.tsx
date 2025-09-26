@@ -1,5 +1,5 @@
 import {signOut} from "firebase/auth"
-import {useApp} from "../../../components/AppContext.ts"
+import {useApp} from "../../../global/AppContext.ts"
 
 export default function SignOut() {
     const {auth} = useApp()

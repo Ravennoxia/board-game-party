@@ -5,7 +5,7 @@ import {doc, getDoc, setDoc} from "firebase/firestore"
 import {authInstance, dbInstance} from "../global/firebase.ts"
 import {DB_TABLES} from "../global/constants.ts"
 import {fetchUsersGamesFromFirestore} from "../global/functions.ts"
-import {AppContext, type AppContextType} from "./AppContext.ts"
+import {AppContext, type AppContextType} from "../global/AppContext.ts"
 
 export default function AppProvider({children}: { children: ReactNode }) {
     const [user, setUser] = useState<BGUser | null>(null)

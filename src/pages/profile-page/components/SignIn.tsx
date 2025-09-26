@@ -1,6 +1,6 @@
 import {GoogleAuthProvider, signInWithPopup} from "firebase/auth"
 import "./SignIn.css"
-import {useApp} from "../../../components/AppContext.ts"
+import {useApp} from "../../../global/AppContext.ts"
 
 export default function SignIn() {
     const {auth} = useApp()

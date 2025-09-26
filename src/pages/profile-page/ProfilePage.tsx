@@ -6,7 +6,7 @@ import {useForm} from "react-hook-form"
 import ImportGames from "./components/ImportGames.tsx"
 import {DB_TABLES} from "../../global/constants.ts"
 import {dbInstance} from "../../global/firebase.ts"
-import {useApp} from "../../components/AppContext.ts"
+import {useApp} from "../../global/AppContext.ts"
 
 type UsernameFormValues = {
     username: string

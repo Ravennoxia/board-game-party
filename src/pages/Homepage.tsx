@@ -1,4 +1,4 @@
-import {useApp} from "../components/AppContext.ts"
+import {useApp} from "../global/AppContext.ts"
 import "./Homepage.css"
 
 export default function Homepage() {

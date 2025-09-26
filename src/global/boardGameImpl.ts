@@ -1,5 +1,5 @@
-import type {BoardGame} from "../global/types.ts"
-import {getIntAttributeFromXML, getXMLDoc} from "../global/functions.ts"
+import type {BoardGame} from "./types.ts"
+import {getIntAttributeFromXML, getXMLDoc} from "./functions.ts"
 
 export default class BoardGameImpl implements BoardGame {
     id!: number

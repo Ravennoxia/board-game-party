@@ -4,8 +4,8 @@ import {collection, doc, documentId, getDocs, query, updateDoc, where, writeBatc
 import {DB_TABLES} from "../../../global/constants.ts"
 import {fetchUsersGamesFromFirestore, getIntAttributeFromXML, getXMLDoc} from "../../../global/functions.ts"
 import {dbInstance} from "../../../global/firebase.ts"
-import {useApp} from "../../../components/AppContext.ts"
-import BoardGameImpl from "../../../components/boardGameImpl.ts"
+import {useApp} from "../../../global/AppContext.ts"
+import BoardGameImpl from "../../../global/boardGameImpl.ts"
 
 export default function ImportGames() {
     const {user, setGames} = useApp()
