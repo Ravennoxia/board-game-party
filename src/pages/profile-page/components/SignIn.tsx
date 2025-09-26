@@ -1,11 +1,11 @@
-import {type Auth, GoogleAuthProvider, signInWithPopup} from "firebase/auth"
+import {GoogleAuthProvider, signInWithPopup} from "firebase/auth"
 import "./SignIn.css"
+import {useApp} from "../../../global/AppContext.ts"
 
-export default function SignIn({auth}: { auth: Auth | null }) {
+export default function SignIn() {
+    const {auth} = useApp()
+
     async function handleSignIn() {
-        if (!auth) {
-            return
-        }
         try {
             const provider = new GoogleAuthProvider()
             provider.setCustomParameters({

@@ -1,0 +1,15 @@
+.games-container {
+    display: grid;
+    margin: 1rem 5rem;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem 0;
+}
+
+.game-card {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    max-width: 200px;
+    height: fit-content;
+    text-align: center;
+}

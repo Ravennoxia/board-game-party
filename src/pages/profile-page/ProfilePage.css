@@ -1,7 +1,8 @@
-.profile-page {
+.profile-container {
     display: flex;
     align-items: center;
     flex-direction: column;
+    gap: 1rem;
 }
 
 .profile-image {
@@ -23,6 +24,16 @@
     grid-template-columns: auto 200px 65px;
     grid-auto-rows: 45px;
     gap: 1rem;
+}
+
+.profile-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border-radius: 50%;
 }
 
 .field-name {
@@ -47,16 +58,6 @@
 .field-buttons {
     display: flex;
     gap: 5px;
-}
-
-.profile-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-    padding: 0;
-    border-radius: 50%;
 }
 
 @media screen and (max-width: 450px) {
