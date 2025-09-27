@@ -1,5 +1,6 @@
 import type {BoardGame} from "./types.ts"
 import {getIntAttributeFromXML, getXMLDoc} from "./functions.ts"
+import {BGG_URL, PROXY_URL} from "./constants.ts"
 
 export default class BoardGameImpl implements BoardGame {
     id!: number
@@ -43,7 +44,7 @@ export default class BoardGameImpl implements BoardGame {
             expansions: []
         }
         try {
-            const response = await fetch(`https://boardgamegeek.com/xmlapi/boardgame/${id}`)
+            const response = await fetch(PROXY_URL + encodeURIComponent(`${BGG_URL}boardgame/${id}`))
             if (!response.ok) {
                 console.error(`Could not fetch details for game ID ${id}. HTTP Error! Status: ${response.status}`)
                 return new BoardGameImpl(partialItem)

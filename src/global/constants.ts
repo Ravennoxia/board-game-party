@@ -17,3 +17,6 @@ export const FIREBASE_CONFIG = {
     appId: "1:400848628410:web:9357bba7f8c4dcc5bcb083",
     measurementId: "G-VXZ52R32MK"
 }
+
+export const PROXY_URL = "https://api.allorigins.win/raw?url="
+export const BGG_URL = "https://boardgamegeek.com/xmlapi/"

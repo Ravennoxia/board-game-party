@@ -1,7 +1,7 @@
 import type {BoardGame} from "../../../global/types.ts"
 import {useState} from "react"
 import {collection, doc, documentId, getDocs, query, updateDoc, where, writeBatch} from "firebase/firestore"
-import {DB_TABLES} from "../../../global/constants.ts"
+import {BGG_URL, DB_TABLES, PROXY_URL} from "../../../global/constants.ts"
 import {fetchUsersGamesFromFirestore, getIntAttributeFromXML, getXMLDoc} from "../../../global/functions.ts"
 import {dbInstance} from "../../../global/firebase.ts"
 import {useApp} from "../../../global/AppContext.ts"
@@ -21,7 +21,7 @@ export default function ImportGames() {
                 setErrorMessage("First set BGG username")
                 return
             }
-            const response = await fetch(`https://boardgamegeek.com/xmlapi/collection/${user.bggUsername}?own=1`)
+            const response = await fetch(PROXY_URL + encodeURIComponent(`${BGG_URL}collection/${user.bggUsername}?own=1`))
             if (!response.ok) {
                 console.error(
                     `Could not fetch collection of ${user.bggUsername}. HTTP error! status: ${response.status}`)
