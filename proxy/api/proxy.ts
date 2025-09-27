@@ -41,7 +41,7 @@ export default async function handler(request: Request) {
 
         const apiResponse = await fetch(targetUrl, init)
         const respHeaders = new Headers(apiResponse.headers)
-        Object.entries(CORS).forEach(([k, v]) => respHeaders.set(k, v as string))
+        Object.entries(CORS).forEach(([k, v]) => respHeaders.set(k, v))
         respHeaders.delete("content-security-policy")
         respHeaders.delete("content-security-policy-report-only")
         respHeaders.delete("x-frame-options")

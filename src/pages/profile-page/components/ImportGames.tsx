@@ -56,7 +56,7 @@ export default function ImportGames() {
     }
 
     /**
-     * Checks whether username is recognized by BGG API
+     * Checks whether BGG API recognizes the username
      *
      * <errors>
      *     <error>
