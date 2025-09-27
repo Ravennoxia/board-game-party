@@ -1,7 +1,7 @@
 import "./ProfilePage.css"
 import {useState} from "react"
 import {doc, updateDoc} from "firebase/firestore"
-import {CheckIcon, Cross1Icon, Pencil1Icon} from "@radix-ui/react-icons"
+import {CheckIcon, Cross2Icon, Pencil1Icon} from "@radix-ui/react-icons"
 import {useForm} from "react-hook-form"
 import ImportGames from "./components/ImportGames.tsx"
 import {DB_TABLES} from "../../global/constants.ts"
@@ -109,7 +109,7 @@ export default function ProfilePage() {
                             <div className={"field-buttons"}>
                                 <button className={"profile-button"} type={"submit"}><CheckIcon/></button>
                                 <button className={"profile-button"} onClick={() => setEditingUsername(false)}>
-                                    <Cross1Icon/>
+                                    <Cross2Icon/>
                                 </button>
                             </div>
                         </>
@@ -159,7 +159,7 @@ export default function ProfilePage() {
                                 <button className={"profile-button"}
                                         onClick={() => setEditingBGGUsername(false)}
                                 >
-                                    <Cross1Icon/>
+                                    <Cross2Icon/>
                                 </button>
                             </div>
                         </>

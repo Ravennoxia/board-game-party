@@ -43,7 +43,7 @@ export default class BoardGameImpl implements BoardGame {
             expansions: []
         }
         try {
-            const response = await fetch(`/xmlapi/boardgame/${id}`)
+            const response = await fetch(`https://boardgamegeek.com/xmlapi/boardgame/${id}`)
             if (!response.ok) {
                 console.error(`Could not fetch details for game ID ${id}. HTTP Error! Status: ${response.status}`)
                 return new BoardGameImpl(partialItem)
