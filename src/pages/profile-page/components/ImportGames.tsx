@@ -21,7 +21,7 @@ export default function ImportGames() {
                 setErrorMessage("First set BGG username")
                 return
             }
-            const response = await fetch(`/xmlapi/collection/${user.bggUsername}?own=1`)
+            const response = await fetch(`https://boardgamegeek.com/xmlapi/collection/${user.bggUsername}?own=1`)
             if (!response.ok) {
                 console.error(
                     `Could not fetch collection of ${user.bggUsername}. HTTP error! status: ${response.status}`)
