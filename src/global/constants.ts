@@ -18,5 +18,5 @@ export const FIREBASE_CONFIG = {
     measurementId: "G-VXZ52R32MK"
 }
 
-export const PROXY_URL = "https://api.allorigins.win/raw?url="
+export const PROXY_URL = "https://board-game-party.vercel.app/api/proxy?url="
 export const BGG_URL = "https://boardgamegeek.com/xmlapi/"

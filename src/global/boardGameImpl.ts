@@ -44,7 +44,7 @@ export default class BoardGameImpl implements BoardGame {
             expansions: []
         }
         try {
-            const response = await fetch(PROXY_URL + encodeURIComponent(`${BGG_URL}boardgame/${id}`))
+            const response = await fetch(PROXY_URL + encodeURIComponent(`${BGG_URL}boardgame/${id}`), {method: "GET"})
             if (!response.ok) {
                 console.error(`Could not fetch details for game ID ${id}. HTTP Error! Status: ${response.status}`)
                 return new BoardGameImpl(partialItem)

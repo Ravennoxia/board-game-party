@@ -21,11 +21,12 @@ export default function ImportGames() {
                 setErrorMessage("First set BGG username")
                 return
             }
-            const response = await fetch(PROXY_URL + encodeURIComponent(`${BGG_URL}collection/${user.bggUsername}?own=1`))
+            const response = await fetch(PROXY_URL + encodeURIComponent(`${BGG_URL}collection/${user.bggUsername}?own=1`), {method: "GET"})
             if (!response.ok) {
-                console.error(
-                    `Could not fetch collection of ${user.bggUsername}. HTTP error! status: ${response.status}`)
-                setErrorMessage(`HTTP error: ${response.status}`)
+                const errorText = await response.text()
+                console.error(`Could not fetch collection of ${user.bggUsername}. HTTP error! status: ${response.status}`,
+                    "Response body:", errorText)
+                setErrorMessage(`Proxy error: ${errorText}`)
                 return
             }
             const xmlDoc = await getXMLDoc(response)
