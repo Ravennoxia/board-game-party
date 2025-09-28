@@ -48,7 +48,7 @@
 .field-error {
     font-size: 14px;
     text-align: end;
-    color: red;
+    color: var(--error-color);
 }
 
 .field-error-placeholder {

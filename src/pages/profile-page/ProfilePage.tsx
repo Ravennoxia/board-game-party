@@ -121,9 +121,7 @@ export default function ProfilePage() {
                     )}
                 </form>
                 <form className={"profile-grid"} onSubmit={handleSubmitBGGUsername(saveBGGUsername)}>
-                    <label className={"field-name"}
-                           htmlFor={"bggUsername"}
-                    >
+                    <label className={"field-name"} htmlFor={"bggUsername"}>
                         BoardGameGeek <br/> Username:
                     </label>
                     {editingBGGUsername ? (
