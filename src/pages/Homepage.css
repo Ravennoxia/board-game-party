@@ -12,6 +12,7 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+    margin: 0;
     padding-bottom: 1rem;
     background-color: var(--background-color);
     gap: 1rem;
@@ -32,6 +33,7 @@
 }
 
 .cancel-button {
+    line-height: 1;
     width: 21px;
     height: 21px;
     padding: 0;
@@ -43,7 +45,7 @@
 .games-container {
     display: grid;
     margin-bottom: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 1rem 0;
 }
 
@@ -62,7 +64,7 @@
     }
 
     .games-container {
-        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
     }
 
     .game-card img {

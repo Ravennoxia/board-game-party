@@ -14,7 +14,10 @@ export default function Homepage({showFilters}: { showFilters: boolean }) {
     const [playTime, setPlayTime] = useState<number | undefined>(undefined)
 
     function blockENotationKeys(e: React.KeyboardEvent<HTMLInputElement>) {
-        if (["e", "E", "+", "-"].includes(e.key)) e.preventDefault()
+        const k = e.key
+        if (["e", "E", "+", "-"].includes(k) || (k.length === 1 && !/^\d$/.test(k))) {
+            e.preventDefault()
+        }
     }
 
     function sanitizeNumber(e: React.FormEvent<HTMLInputElement>, max: number, setter: Dispatch<SetStateAction<number | undefined>>) {
@@ -52,7 +55,7 @@ export default function Homepage({showFilters}: { showFilters: boolean }) {
                     <label className={"filter-label"}>
                         Number of players:
                         <input className={"input-field"}
-                               style={{width: "30px"}}
+                               style={{width: "35px"}}
                                type={"number"}
                                inputMode={"numeric"}
                                value={numberOfPlayers ?? ""}
@@ -65,7 +68,7 @@ export default function Homepage({showFilters}: { showFilters: boolean }) {
                     <label className={"filter-label"}>
                         Playtime (mins):
                         <input className={"input-field"}
-                               style={{width: "40px"}}
+                               style={{width: "45px"}}
                                type={"number"}
                                inputMode={"numeric"}
                                value={playTime ?? ""}
