@@ -43,7 +43,7 @@
 .games-container {
     display: grid;
     margin-bottom: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 1rem 0;
 }
 
@@ -62,7 +62,7 @@
     }
 
     .games-container {
-        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
     }
 
     .game-card img {
