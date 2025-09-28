@@ -135,7 +135,7 @@ export default function ImportGames() {
         <>
             <button onClick={fetchGamesFromBGG}>{importing ? "Importing..." : "Import Games"}</button>
             {errorMessage && (
-                <div style={{color: "red"}}>{errorMessage}</div>
+                <div style={{color: "var(--error-color)"}}>{errorMessage}</div>
             )}
         </>
     )
