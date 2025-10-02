@@ -1,35 +1,38 @@
-import {useApp} from "../global/AppContext.ts"
+import {useApp} from "../../global/AppContext.ts"
 import "./Homepage.css"
-import * as React from "react"
-import {type Dispatch, type SetStateAction, useMemo, useState} from "react"
-import {Cross2Icon} from "@radix-ui/react-icons"
-import type {BoardGame} from "../global/types.ts"
+import {useMemo, useState} from "react"
+import type {BoardGame} from "../../global/types.ts"
+import Filters, {type FilterState} from "./Filters.tsx"
 
 const URL_BASE = "https://boardgamegeek.com/boardgame/"
+
+export type SortOptions =
+    "none"
+    | "name-asc"
+    | "name-desc"
+    | "min-players"
+    | "max-players"
+    | "min-playtime"
+    | "max-playtime"
+    | "ranking-asc"
+    | "ranking-desc"
 
 export default function Homepage({showFilters}: { showFilters: boolean }) {
     const {games} = useApp()
     const [showExpansions, setShowExpansions] = useState<boolean>(false)
     const [numberOfPlayers, setNumberOfPlayers] = useState<number | undefined>(undefined)
     const [playTime, setPlayTime] = useState<number | undefined>(undefined)
+    const [sortBy, setSortBy] = useState<SortOptions>("none")
 
-    function blockENotationKeys(e: React.KeyboardEvent<HTMLInputElement>) {
-        const k = e.key
-        if (["e", "E", "+", "-"].includes(k) || (k.length === 1 && !/^\d$/.test(k))) {
-            e.preventDefault()
-        }
-    }
-
-    function sanitizeNumber(e: React.FormEvent<HTMLInputElement>, max: number, setter: Dispatch<SetStateAction<number | undefined>>) {
-        const digits = e.currentTarget.value.replace(/\D/g, "").replace(/^0(?=\d)/, "")
-        let digitsNumber = Number(digits)
-        if (digits && !isNaN(digitsNumber)) {
-            if (digitsNumber > max) digitsNumber = max
-            if (digitsNumber < 1) digitsNumber = 1
-            setter(digitsNumber)
-            return
-        }
-        setter(undefined)
+    const filterState: FilterState = {
+        showExpansions,
+        setShowExpansions,
+        numberOfPlayers,
+        setNumberOfPlayers,
+        playTime,
+        setPlayTime,
+        sortBy,
+        setSortBy
     }
 
     const visibleGames = useMemo(() => {
@@ -42,44 +45,7 @@ export default function Homepage({showFilters}: { showFilters: boolean }) {
 
     return (
         <div className={"homepage-container"}>
-            {showFilters && (
-                <div className={"filters-container"}>
-                    <label className={"filter-label"}>
-                        Show expansions:
-                        <input className={"filter-checkbox"}
-                               type={"checkbox"}
-                               checked={showExpansions}
-                               onChange={(e) => setShowExpansions(e.target.checked)}
-                        />
-                    </label>
-                    <label className={"filter-label"}>
-                        Number of players:
-                        <input className={"input-field"}
-                               style={{width: "35px"}}
-                               type={"number"}
-                               inputMode={"numeric"}
-                               value={numberOfPlayers ?? ""}
-                               onKeyDown={blockENotationKeys}
-                               onInput={(e) => sanitizeNumber(e, 99, setNumberOfPlayers)}
-                        />
-                        <button className={"cancel-button"} onClick={() => setNumberOfPlayers(undefined)}><Cross2Icon/>
-                        </button>
-                    </label>
-                    <label className={"filter-label"}>
-                        Playtime (mins):
-                        <input className={"input-field"}
-                               style={{width: "45px"}}
-                               type={"number"}
-                               inputMode={"numeric"}
-                               value={playTime ?? ""}
-                               onKeyDown={blockENotationKeys}
-                               onInput={(e) => sanitizeNumber(e, 999, setPlayTime)}
-                        />
-                        <button className={"cancel-button"} onClick={() => setPlayTime(undefined)}><Cross2Icon/>
-                        </button>
-                    </label>
-                </div>
-            )}
+            <Filters showFilters={showFilters} filterState={filterState}/>
             {games.length > 0 ? (
                 <div className={"games-container"}>
                     {visibleGames.map(game => (
